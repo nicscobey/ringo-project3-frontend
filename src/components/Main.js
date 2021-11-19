@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, useRouteMatch} from 'react-router-dom'
 import Card from '../pages/Cards/Card'
 import Decks from '../pages/Decks/Decks'
 import DecksUpdate from '../pages/Decks/DecksUpdate'
@@ -6,6 +6,8 @@ import DecksShow from '../pages/Decks/DecksShow'
 import DecksNew from '../pages/Decks/DecksNew'
 
 const Main = () => {
+
+    let { path, url } = useRouteMatch();
 
     const sampleDeckNames = ["Deck 1", "Deck 2", "Deck 3"]
 
@@ -35,27 +37,24 @@ const Main = () => {
 
     return (
         <Switch>
-            <Route exact path="/">
+            <Route exact path={path}>
                
             </Route>
-            <Route exact path="/decks">
+            <Route exact path={`${path}/decks`}>
                 <Decks  sampleDeckNames={sampleDeckNames}/>
             </Route>
-            <Route path="/decks/new">
+            <Route path={`${path}/decks/new`}>
                 <DecksNew sampleDeck={sampleDeck}/>
             </Route>
-            <Route path="/decks/:id/update" render={(rp) => (
+            <Route path={`${path}/decks/:id/update`} render={(rp) => (
                     <DecksUpdate {...rp} />
                 )}
             />
-            <Route path="/decks/:id" render={(rp) => (
+            <Route path={`${path}/decks/:id`} render={(rp) => (
                     <DecksShow {...rp} />
                 )}
             />
-            {/* <Route path="/decks/:id">
-                <DecksShow />
-            </Route> */}
-            <Route path="/card/:id">
+            <Route path="/my/card/:id">
                 <Card />
             </Route>
         </Switch>
