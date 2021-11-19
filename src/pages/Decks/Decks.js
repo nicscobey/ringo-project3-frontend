@@ -10,7 +10,7 @@ const Decks = (props) => {
 
     const deckButtons = () => {
         return props.sampleDeckNames.map((deck) => (
-            <Link to="/decks/hi"><Button className="fixed-width-button" variant="contained">{deck}</Button></Link>
+            <Link to="/my/decks/hi"><Button className="fixed-width-button" variant="contained">{deck}</Button></Link>
         ))
     }
 
