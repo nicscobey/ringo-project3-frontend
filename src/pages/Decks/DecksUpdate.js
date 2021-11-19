@@ -1,8 +1,14 @@
 import {Switch, Route} from 'react-router-dom'
 
-const DecksUpdate = () => {
+const DecksUpdate = (props) => {
+
+    const id = props.match.params.id
+
     return (
-        <h1>Decks Update</h1>
+        <div>
+            <h1>Decks Update</h1>
+            <h3>Deck Id: {id}</h3>
+        </div>
     )
 }
 
