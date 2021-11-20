@@ -9,8 +9,8 @@ const Decks = (props) => {
     console.log(props)
 
     const deckButtons = () => {
-        return props.sampleDeckNames.map((deck) => (
-            <Link to="/my/decks/hi"><Button className="fixed-width-button" variant="contained">{deck}</Button></Link>
+        return props.sampleDecks.map((deck) => (
+            <Link to={`/my/decks/${deck._id}`}><Button className="fixed-width-button" variant="contained">{deck.deckTag}</Button></Link>
         ))
     }
 

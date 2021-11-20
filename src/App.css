@@ -64,3 +64,9 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
