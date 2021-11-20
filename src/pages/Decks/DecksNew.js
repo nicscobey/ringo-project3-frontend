@@ -26,6 +26,16 @@ const DecksNew = (props) => {
         ))
     }
 
+    const URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+    const [word, setWord] = useState(null);
+    const getWord = async (word) => {
+        console.log(URL + word);
+        const response = await fetch(URL+word)
+        const data = await response.json()
+        console.log(data)
+        setWord(data);
+    }
+
     const [form, setForm] = useState({deckName: "", word: ""});
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -37,7 +47,24 @@ const DecksNew = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        getWord(form.word)
         handleOpen();
+    }
+
+    const loadingWord = () => {
+        return (
+            <div>
+                Loading...
+            </div>
+        )
+    }
+
+    const loadedWord = () => {
+        return (
+            <div>
+                {word[0].meanings[0].definitions[0].definition}
+            </div>
+        )
     }
 
     return (
@@ -59,10 +86,10 @@ const DecksNew = (props) => {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Results for "{form.word}"
+                        Results for &#8220;{form.word}&#8221;
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                        <b>Definition:</b> {word ? loadedWord() : loadingWord()}
                     </Typography>
                     <Stack className="flex-column-center" direction="row" spacing={4}>
                         <Button variant="contained">Add to Deck</Button>
