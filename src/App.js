@@ -17,6 +17,7 @@ function App() {
           <Signup />
         </Route>
         <Route path="/my">
+          <Header />
           <Main />
         </Route>
       </Switch>
