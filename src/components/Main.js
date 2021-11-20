@@ -3,7 +3,7 @@ import Card from '../pages/Cards/Card'
 import Decks from '../pages/Decks/Decks'
 import DecksUpdate from '../pages/Decks/DecksUpdate'
 import DecksShow from '../pages/Decks/DecksShow'
-import DecksNew from '../pages/Decks/DecksNew'
+import DecksNew from '../pages/Decks/DELETE-DecksNew'
 import { useState } from 'react'
 import { TableBody } from '@mui/material'
 
@@ -13,7 +13,21 @@ const Main = () => {
     const URL = ""
 
     const sampleDeckNames = ["Deck 1", "Deck 2", "Deck 3"]
-    const sampleDeck = [
+    const sampleDecks = [
+        {
+            deckTag: "animals",
+            _id: 1234
+        },
+        {
+            deckTag: "flowers",
+            _id: 2345
+        },
+        {
+            deckTag: "presidents",
+            _id: 3456
+        }
+    ]
+    const sampleCards = [
         {
             word: "cat",
             definition: "Furry feline",
@@ -22,7 +36,7 @@ const Main = () => {
             deckId: 1234
         },
         {
-            word: "dog",
+            word: "doggie",
             definition: "A barking cat",
             example: "Hey there, dog.",
             deckTag: "animals",
@@ -34,6 +48,27 @@ const Main = () => {
             example: "See the elephant?",
             deckTag: "animals",
             deckId: 1234
+        },
+        {
+            word: "rose",
+            definition: "watch for thorns!",
+            example: "Rosey O'Donnel",
+            deckTag: "flowers",
+            deckId: 2345
+        },
+        {
+            word: "daisy",
+            definition: "it's also a name",
+            example: "Lazy Daisy",
+            deckTag: "flowers",
+            deckId: 2345
+        },
+        {
+            word: "dandelion",
+            definition: "it's a weed - yes or no",
+            example: "Well, that's dandy",
+            deckTag: "flowers",
+            deckId: 2345
         },
     ]
 
@@ -115,28 +150,27 @@ const Main = () => {
         getDecks()
     }
 
-
     return (
         <Switch>
             <Route exact path={path}>
                
             </Route>
             <Route exact path={`${path}/decks`}>
-                <Decks decks={decks} sampleDeckNames={sampleDeckNames}/>
+                <Decks decks={decks} sampleDecks={sampleDecks} sampleDeckNames={sampleDeckNames}/>
             </Route>
-            <Route path={`${path}/decks/new`}>
+            {/* <Route path={`${path}/decks/new`}>
                 <DecksNew decks={decks} newDeck={newDeck} sampleDeck={sampleDeck}/>
-            </Route>
+            </Route> */}
             <Route path={`${path}/decks/:id/update`} render={(rp) => (
-                    <DecksUpdate decks={decks} {...rp} updateDeck={updateDeck} />
+                    <DecksUpdate decks={decks} sampleCards={sampleCards} sampleDecks={sampleDecks} sampleDeck={sampleCards} {...rp} updateDeck={updateDeck} />
                 )}
             />
             <Route path={`${path}/decks/:id`} render={(rp) => (
-                    <DecksShow decks={decks} {...rp} />
+                    <DecksShow decks={decks} sampleCards={sampleCards} sampleDecks={sampleDecks} {...rp} />
                 )}
             />
             <Route path="/my/card/:id">
-                <Card cards={cards} />
+                <Card cards={cards} sampleCards={sampleCards} />
             </Route>
         </Switch>
     )
