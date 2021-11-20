@@ -36,7 +36,7 @@ const Main = () => {
             deckId: 1234
         },
         {
-            word: "dog",
+            word: "doggie",
             definition: "A barking cat",
             example: "Hey there, dog.",
             deckTag: "animals",
