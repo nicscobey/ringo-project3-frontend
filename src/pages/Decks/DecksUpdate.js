@@ -22,6 +22,8 @@ const DecksUpdate = (props) => {
     const cards = props.cards;
     const id = props.match.params.id
     const deckName = props.decks.find(deck => deck._id === id).deckTag
+    const deleteCard = props.deleteCard
+    const newCard = props.newCard
 
     // const showSampleCards = () => {
     //     return sampleCards.map((card) => (
@@ -56,12 +58,26 @@ const DecksUpdate = (props) => {
         event.preventDefault();
         getWord(form.word)
         handleOpen();
+        console.log(word);
     }
 
-    const loadingWord = () => {
+    // const loadingWord = () => {
+    //     return (
+    //         <div>
+    //             Loading...
+    //         </div>
+    //     )
+    // }
+
+    const loadedCards = () => {
         return (
             <div>
-                Loading...
+                {/* {word[0].meanings[0].definitions[0].definition} */}
+                {filteredCards.map(card => {
+                    return (
+                        <CardPreview cardId={card._id} word={card.word} definition={card.definition} expanded={true} edit={true} deleteCard={deleteCard} />
+                    )
+                })}
             </div>
         )
     }
@@ -69,14 +85,14 @@ const DecksUpdate = (props) => {
     const loadedWord = () => {
         return (
             <div>
-                {/* {word[0].meanings[0].definitions[0].definition} */}
-                {filteredCards.map(card => {
-                    return (
-                        <CardPreview word={card.word} definition={card.definition} expanded={true} edit={true}/>
-                    )
-                })}
+                {word[0].meanings[0].definitions[0].definition}
             </div>
         )
+    }
+
+    const addCard = () => {
+        newCard(word, id, deckName)
+        handleClose()
     }
 
     // const revealCards = () => {
@@ -104,7 +120,7 @@ const DecksUpdate = (props) => {
             <h4>{filteredCards.length} cards in this deck</h4>
             <Stack className="center-items" direction="column" spacing={2}>
                 {/* <CardPreview word={"dog"} definition={"Not a cat!"} expanded={true} edit={true}/> */}
-                {loadedWord()}
+                {cards ? loadedCards() : null}
             </Stack>
             {/* {showSampleCards()} */}
             <Modal
@@ -118,10 +134,10 @@ const DecksUpdate = (props) => {
                         Results for &#8220;{form.word}&#8221;
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <b>Definition:</b> {word ? loadedWord() : loadingWord()}
+                        <b>Definition:</b> {word ? loadedWord() : null}
                     </Typography>
                     <Stack className="flex-column-center" direction="row" spacing={4}>
-                        <Button variant="contained">Add to Deck</Button>
+                        <Button variant="contained" onClick={addCard} >Add to Deck</Button>
                         <Button variant="outlined" onClick={handleClose}>Cancel</Button>
                     </Stack>
                 </Box>

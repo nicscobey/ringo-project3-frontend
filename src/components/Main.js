@@ -83,31 +83,40 @@ const Main = () => {
         setCards(data);
     }
 
-    const updateCard = async (card, id) => {
-        await fetch(URL + id, {
-            method: "put",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(card)
-        })
-        getCards()
-    }
+    // const updateCard = async (card, id) => {
+    //     await fetch(cardURL + id, {
+    //         method: "put",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(card)
+    //     })
+    //     getCards()
+    // }
 
     const deleteCard = async (id) => {
-        await fetch(URL + id, {
+        console.log(id)
+        await fetch(cardURL + id, {
             method: "delete"
         })
         getCards()
     }
 
-    const newCard = async (card) => {
-        await fetch(URL, {
+    const newCard = async (card, id, deckName) => {
+        
+        //also need to add deckTag and deckId
+        const data = {
+            "word": card[0].word,
+            "definition": card[0].meanings[0].definitions[0].definition,
+            "deckId": id,
+            "deckTag": deckName
+        }
+        await fetch(cardURL, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(card)
+            body: JSON.stringify(data)
         }) 
         getCards();
     }
@@ -126,7 +135,7 @@ const Main = () => {
     }
 
     const updateDeck = async (deck, id) => {
-        await fetch(URL + id, {
+        await fetch(deckURL + id, {
             method: "put",
             headers: {
                 "Content-Type": "application/json"
@@ -137,14 +146,14 @@ const Main = () => {
     }
 
     const deleteDeck = async (id) => {
-        await fetch(URL + id, {
+        await fetch(deckURL + id, {
             method: "delete"
         })
         getDecks()
     }
 
     const newDeck = async (deck) => {
-        await fetch(URL, {
+        await fetch(deckURL, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -170,7 +179,7 @@ const Main = () => {
                 <DecksNew decks={decks} newDeck={newDeck} sampleDeck={sampleDeck}/>
             </Route> */}
             <Route path={`${path}/decks/:id/update`} render={(rp) => (
-                    <DecksUpdate decks={decks} cards={cards} {...rp} updateDeck={updateDeck} />
+                    <DecksUpdate newCard={newCard} deleteCard={deleteCard} decks={decks} cards={cards} {...rp} updateDeck={updateDeck} />
                 )}
             />
             <Route path={`${path}/decks/:id`} render={(rp) => (
