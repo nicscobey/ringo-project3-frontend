@@ -3,6 +3,7 @@ import Card from '../pages/Cards/Card'
 import Decks from '../pages/Decks/Decks'
 import DecksUpdate from '../pages/Decks/DecksUpdate'
 import DecksShow from '../pages/Decks/DecksShow'
+import Home from '../pages/Home'
 import DecksNew from '../pages/Decks/DELETE-DecksNew'
 import { useState, useEffect } from 'react'
 import { TableBody } from '@mui/material'
@@ -172,7 +173,7 @@ const Main = () => {
     return (
         <Switch>
             <Route exact path={path}>
-               
+                <Home newDeck={newDeck} />
             </Route>
             <Route exact path={`${path}/decks`}>
                 <Decks decks={decks}/>
