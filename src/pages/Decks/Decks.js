@@ -17,6 +17,11 @@ const Decks = (props) => {
     return (
         <div>
             <h1>My Flashcard Decks</h1>
+
+            <Link to={`/my/card/61998bc409e75aab8e6aba86`}>
+             <button>click here</button>
+            </Link>
+
             <Stack className="flex-center" spacing={4}>
                 {decks ? deckButtons() : null}
             </Stack>
