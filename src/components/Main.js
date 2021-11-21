@@ -83,6 +83,7 @@ const Main = () => {
     }
 
     const updateCard = async (card, id) => {
+        // make a put request to get cards
         await fetch(URL + id, {
             method: "put",
             headers: {
@@ -94,6 +95,7 @@ const Main = () => {
     }
 
     const deleteCard = async (id) => {
+        // make delete request to get cards
         await fetch(URL + id, {
             method: "delete"
         })
@@ -101,6 +103,7 @@ const Main = () => {
     }
 
     const newCard = async (card) => {
+        // make post request to new card
         await fetch(URL, {
             method: "post",
             headers: {
@@ -169,8 +172,15 @@ const Main = () => {
                     <DecksShow decks={decks} sampleCards={sampleCards} sampleDecks={sampleDecks} {...rp} />
                 )}
             />
-            <Route path="/my/card/:id">
-                <Card cards={cards} sampleCards={sampleCards} />
+            <Route path="/my/card/:id" render={(rp) => (
+                <Card 
+                    cards={cards} 
+                    sampleCards={sampleCards}
+                    deleteCard={deleteCard}
+                    {...rp} 
+                />
+                )}
+                >
             </Route>
         </Switch>
     )
