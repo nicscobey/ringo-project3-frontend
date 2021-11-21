@@ -47,7 +47,7 @@ export default function CardPreview(props) {
   }
 
   return (
-    <Card sx={{ width: 345 }}>
+    <Card sx={{ width: 345 }} className="card-preview">
       <CardContent className="flex">
         <Typography color="text.secondary">
           {word}

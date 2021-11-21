@@ -1,23 +1,3 @@
-// import {Switch, Route} from 'react-router-dom'
-// import CardPreview from '../../components/CardPreview'
-// import { Stack } from '@mui/material'
-
-// const DecksUpdate = (props) => {
-
-//     const id = props.match.params.id
-
-//     return (
-//         <div>
-//             <h1>Decks Update</h1>
-            
-//         </div>
-//     )
-// }
-
-// export default DecksUpdate;
-
-
-//
 import {Switch, Route} from 'react-router-dom'
 import { Button, TextField, Modal, Box, Typography, Stack } from '@mui/material';
 import {useState} from 'react'
@@ -38,18 +18,20 @@ const style = {
 
 const DecksUpdate = (props) => {
 
-    const sampleCards = props.sampleCards;
-    const id = parseInt(props.match.params.id)
+    // const sampleCards = props.sampleCards;
+    const cards = props.cards;
+    const id = props.match.params.id
+    const deckName = props.decks.find(deck => deck._id === id).deckTag
 
-    const showSampleCards = () => {
-        return sampleCards.map((card) => (
-            <div>
-                {card.word}
-            </div>
-        ))
-    }
+    // const showSampleCards = () => {
+    //     return sampleCards.map((card) => (
+    //         <div>
+    //             {card.word}
+    //         </div>
+    //     ))
+    // }
 
-    const filteredCards = sampleCards.filter(card => card.deckId===id)
+    const filteredCards = cards.filter(card => card.deckId===id)
 
     const URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
     const [word, setWord] = useState(null);
@@ -112,18 +94,17 @@ const DecksUpdate = (props) => {
     return (
         <div>
             <h1>UPDATE A NEW DECK</h1>
-            <h2>Enter Deck Name</h2>
+            <h2>{deckName}</h2>
             <h3>Deck Id: {id}</h3>
             <form className="center-items" onSubmit={handleSubmit}>
                 {/* <TextField required onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/> */}
                 <TextField onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/>
                 <Button type="submit" variant="contained">Search</Button>
             </form>
-            <h4>{sampleCards.length} cards in this deck</h4>
+            <h4>{filteredCards.length} cards in this deck</h4>
             <Stack className="center-items" direction="column" spacing={2}>
                 {/* <CardPreview word={"dog"} definition={"Not a cat!"} expanded={true} edit={true}/> */}
                 {loadedWord()}
-
             </Stack>
             {/* {showSampleCards()} */}
             <Modal
