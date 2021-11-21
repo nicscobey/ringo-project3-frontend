@@ -6,10 +6,10 @@ import Stack from '@mui/material/Stack'
 
 const Decks = (props) => {
 
-    console.log(props)
+    const decks = props.decks;
 
     const deckButtons = () => {
-        return props.sampleDecks.map((deck) => (
+        return decks.map((deck) => (
             <Link to={`/my/decks/${deck._id}`}><Button className="fixed-width-button" variant="contained">{deck.deckTag}</Button></Link>
         ))
     }
@@ -18,7 +18,7 @@ const Decks = (props) => {
         <div>
             <h1>My Flashcard Decks</h1>
             <Stack className="flex-center" spacing={4}>
-                {deckButtons()}
+                {decks ? deckButtons() : null}
             </Stack>
         </div>
     )

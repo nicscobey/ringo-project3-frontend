@@ -5,10 +5,16 @@ import CardPreview from '../../components/CardPreview'
 
 const DecksShow = (props) => {
 
-    const id = parseInt(props.match.params.id);
+    console.log(props)
+
+
+    const id = props.match.params.id;
     const [showCards, setShowCards] = useState(false)
-    const sampleCards = props.sampleCards.filter(card => card.deckId === id)
-    console.log(sampleCards);
+    // const sampleCards = props.sampleCards.filter(card => card.deckId === id)
+    const cards = props.cards.filter(card => card.deckId === id)
+    console.log(id);
+    console.log(cards)
+    // console.log(sampleCards);
 
     const toggleShowCards = () => {
         setShowCards(!showCards)
@@ -20,7 +26,7 @@ const DecksShow = (props) => {
         return (
             <>
                 <Button variant="contained" className="fixed-width-button" onClick={toggleShowCards}>Hide Cards</Button>
-                {sampleCards.map(card => {
+                {cards.map(card => {
                     return (
                         <CardPreview word={card.word} definition={card.definition} expanded={false} edit={false}/>
                     )

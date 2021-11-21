@@ -34,20 +34,27 @@ export default function CardPreview(props) {
     setExpanded(!expanded);
   };
 
+  const deleteCard = props.deleteCard;
+
   const word = props.word;
   const definition = props.definition;
   const edit = props.edit;
+  const id = props.cardId;
+
+  const removeCard = () => {
+    deleteCard(id)
+  }
 
   const showEditTools = () => {
       return (
           <>
-            <Button variant="outlined">Delete</Button>
+            <Button variant="outlined" onClick={removeCard} >Delete</Button>
           </>
       )
   }
 
   return (
-    <Card sx={{ width: 345 }}>
+    <Card sx={{ width: 345 }} className="card-preview">
       <CardContent className="flex">
         <Typography color="text.secondary">
           {word}

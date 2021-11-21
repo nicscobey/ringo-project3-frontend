@@ -8,6 +8,7 @@ const Card = (props) => {
     
     const id = props.match.params.id
     const card = props.card
+    const deleteCard = props.deleteCard;
     // const cards = card.find(p => p._id === id_)
     
     // *DO WE NEED THIS?: state for form
