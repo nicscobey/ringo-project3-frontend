@@ -24,6 +24,9 @@ const DecksUpdate = (props) => {
     const deckName = props.decks.find(deck => deck._id === id).deckTag
     const deleteCard = props.deleteCard
     const newCard = props.newCard
+    const deck = props.decks.find(deck => deck._id === id)
+    console.log(deck)
+
 
     // const showSampleCards = () => {
     //     return sampleCards.map((card) => (
@@ -69,6 +72,10 @@ const DecksUpdate = (props) => {
     //     )
     // }
 
+    //CARD FUNCTIONS
+
+    
+
     const loadedCards = () => {
         return (
             <div>
@@ -93,7 +100,9 @@ const DecksUpdate = (props) => {
     const addCard = () => {
         newCard(word, id, deckName)
         handleClose()
+        setForm({deckName: "", word: ""})
     }
+
 
     // const revealCards = () => {
     //     return (
@@ -109,9 +118,9 @@ const DecksUpdate = (props) => {
 
     return (
         <div>
-            <h1>UPDATE A NEW DECK</h1>
-            <h2>{deckName}</h2>
-            <h3>Deck Id: {id}</h3>
+            <h1>Update {deck.deckTag}</h1>
+            {/* <h2>{deckName}</h2>
+            <h3>Deck Id: {id}</h3> */}
             <form className="center-items" onSubmit={handleSubmit}>
                 {/* <TextField required onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/> */}
                 <TextField onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/>
@@ -142,6 +151,7 @@ const DecksUpdate = (props) => {
                     </Stack>
                 </Box>
             </Modal>
+            
         </div>
     )
 }
