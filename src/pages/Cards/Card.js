@@ -22,10 +22,10 @@ const Card = (props) => {
     // }
 
     // *DO WE NEED THIS?: delete/remove card from deck
-    const deleteCard = () => {
-        props.deleteDeck(card._id)
-        props.history.push("/")
-    }
+    // const deleteCard = () => {
+    //     props.deleteDeck(card._id)
+    //     props.history.push("/")
+    // }
 
     return (
     <div className="card">

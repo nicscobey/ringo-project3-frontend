@@ -192,7 +192,6 @@ const Main = () => {
             <Route path="/my/card/:id" render={(rp) => (
                 <Card 
                     cards={cards} 
-                    sampleCards={sampleCards}
                     deleteCard={deleteCard}
                     {...rp} 
                 />
