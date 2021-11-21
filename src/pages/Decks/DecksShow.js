@@ -1,7 +1,19 @@
 import {Switch, Route, Link} from 'react-router-dom'
-import {Button, Stack, toggleButtonClasses} from '@mui/material'
+import {Button, Stack, Box, Typography, Modal, TextField } from '@mui/material'
 import { useState, useEffect } from 'react';
 import CardPreview from '../../components/CardPreview'
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    "border-radius": "20px"
+};
 
 const DecksShow = (props) => {
 
@@ -15,12 +27,16 @@ const DecksShow = (props) => {
     console.log(id);
     console.log(cards)
     // console.log(sampleCards);
+    const deck = props.decks.find(deck => deck._id === id)
+    console.log(deck)
 
     const toggleShowCards = () => {
         setShowCards(!showCards)
     }
 
-
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const revealCards = () => {
         return (
@@ -41,15 +57,38 @@ const DecksShow = (props) => {
         )
     }
 
+    const removeDeck = () => {
+        props.deleteDeck(id)
+    }
+
     return (
         <div>
-            <h1>Decks Show</h1>
-            <h3>Deck Id: {id}</h3> 
+            <h1>{deck.deckTag}</h1>
             <Stack className="center-items" direction="column" spacing={2}>
                 <Button variant="contained" className="fixed-width-button">Practice Flashcards</Button>
                 <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Add or Update Cards</Button></Link>
                 {showCards ? revealCards() : hideCards()}
+                <Button variant="outlined" className="fixed-width-button" onClick={handleOpen}>Delete Deck</Button>
             </Stack>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h4">
+                        Are you sure you wish to delete this deck? This action cannot be undone.
+                    </Typography>
+                    {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <b>Definition:</b> {word ? loadedWord() : null}
+                    </Typography> */}
+                    <Stack className="flex-column-center" direction="row" spacing={4} >
+                        <Link to="/my/decks"><Button variant="contained" type="submit" onClick={removeDeck}>Delete Deck</Button></Link>
+                        <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+                    </Stack>
+                </Box>
+            </Modal>
         </div>
     )
 }
