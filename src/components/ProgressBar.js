@@ -18,7 +18,7 @@ export default function ProgressBar(props) {
 //   };
 
   return (
-    <MobileStepper className="progress-bar"
+    <MobileStepper id="practice-navbar" className="progress-bar"
       variant="progress"
       steps={props.steps}
       position="static"
