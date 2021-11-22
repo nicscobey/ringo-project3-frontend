@@ -7,6 +7,7 @@ import Home from '../pages/Home'
 import DecksNew from '../pages/Decks/DELETE-DecksNew'
 import { useState, useEffect } from 'react'
 import { TableBody } from '@mui/material'
+import Practice from '../pages/Practice'
 
 const Main = () => {
 
@@ -185,11 +186,14 @@ const Main = () => {
                     <DecksUpdate newCard={newCard} deleteCard={deleteCard} decks={decks} cards={cards} {...rp} updateDeck={updateDeck} />
                 )}
             />
+            <Route path={`${path}/decks/:id/practice`} render={(rp) => (
+                    <Practice cards={cards} decks={decks} {...rp} />
+                )}
+            />
             <Route path={`${path}/decks/:id`} render={(rp) => (
                     <DecksShow cards={cards} decks={decks} deleteDeck={deleteDeck} {...rp} />
                 )}
             />
-
             <Route path="/my/card/:id" render={(rp) => (
                 <Card 
                     cards={cards}
