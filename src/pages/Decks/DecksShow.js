@@ -2,6 +2,7 @@ import {Switch, Route, Link} from 'react-router-dom'
 import {Button, Stack, Box, Typography, Modal, TextField } from '@mui/material'
 import { useState, useEffect } from 'react';
 import CardPreview from '../../components/CardPreview'
+import LoadingIcon from '../../components/LoadingIcon';
 
 const style = {
     position: 'absolute',
@@ -61,11 +62,13 @@ const DecksShow = (props) => {
         props.deleteDeck(id)
     }
 
-    return (
-        <div>
+
+    const loadedData = () => {
+        return (
+            <div>
             <h1>{deck.deckTag}</h1>
             <Stack className="center-items" direction="column" spacing={2}>
-                <Button variant="contained" className="fixed-width-button">Practice Flashcards</Button>
+                <Link to={`/my/decks/${id}/practice`}><Button variant="contained" className="fixed-width-button">Practice Flashcards</Button></Link>
                 <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Add or Update Cards</Button></Link>
                 {showCards ? revealCards() : hideCards()}
                 <Button variant="outlined" className="fixed-width-button" onClick={handleOpen}>Delete Deck</Button>
@@ -90,6 +93,41 @@ const DecksShow = (props) => {
                 </Box>
             </Modal>
         </div>
+        )
+    }
+
+    return (
+        <>
+            {cards && deck ? loadedData() : <LoadingIcon />}
+        </>
+        // <div>
+        //     <h1>{deck.deckTag}</h1>
+        //     <Stack className="center-items" direction="column" spacing={2}>
+        //         <Link to={`/my/decks/${id}/practice`}><Button variant="contained" className="fixed-width-button">Practice Flashcards</Button></Link>
+        //         <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Add or Update Cards</Button></Link>
+        //         {showCards ? revealCards() : hideCards()}
+        //         <Button variant="outlined" className="fixed-width-button" onClick={handleOpen}>Delete Deck</Button>
+        //     </Stack>
+        //     <Modal
+        //         open={open}
+        //         onClose={handleClose}
+        //         aria-labelledby="modal-modal-title"
+        //         aria-describedby="modal-modal-description"
+        //     >
+        //         <Box sx={style}>
+        //             <Typography id="modal-modal-title" variant="h6" component="h4">
+        //                 Are you sure you wish to delete this deck? This action cannot be undone.
+        //             </Typography>
+        //             {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        //                 <b>Definition:</b> {word ? loadedWord() : null}
+        //             </Typography> */}
+        //             <Stack className="flex-column-center" direction="row" spacing={4} >
+        //                 <Link to="/my/decks"><Button variant="contained" type="submit" onClick={removeDeck}>Delete Deck</Button></Link>
+        //                 <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+        //             </Stack>
+        //         </Box>
+        //     </Modal>
+        // </div>
     )
 }
 

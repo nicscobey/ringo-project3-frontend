@@ -3,6 +3,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack'
+import LoadingIcon from '../../components/LoadingIcon';
 
 const Decks = (props) => {
 
@@ -23,7 +24,7 @@ const Decks = (props) => {
             </Link>
 
             <Stack className="flex-center" spacing={4}>
-                {decks ? deckButtons() : null}
+                {decks ? deckButtons() : <LoadingIcon />}
             </Stack>
         </div>
     )
