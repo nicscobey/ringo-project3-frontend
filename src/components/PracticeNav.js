@@ -44,13 +44,15 @@ export default function PracticeNav(props) {
     ];
 
     const bottomButton = [
-        <Button className="practiceNav-wide" variant="contained" key="one">
+        <Button onClick={props.setFirstSide} className="practiceNav-wide" variant="contained" key="one">
             <Stack direction="column" className="center-button" spacing={2}>
                 {/* <FlipToFrontIcon /> */}
-                <p>Show Back First</p>
+                {props.showFrontFirst ? <p>Show Back First</p> : <p>Show Front First</p>}
             </Stack>
         </Button>,
     ]
+
+    
 
   return (
     <Box

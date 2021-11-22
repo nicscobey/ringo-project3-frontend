@@ -9,8 +9,10 @@ import ProgressBar from '../components/ProgressBar';
 const Practice = (props) => {
     const id = props.match.params.id;
     const cards = props.cards.filter(card => card.deckId === id)
+    const deckName = cards[0].deckTag
     const [cardNumber, setCardNumber] = useState(0)
     const [showFront, setShowFront] = useState(true)
+    const [showFrontFirst, setShowFrontFirst] = useState(true)
     const [randomizedCards, setRandomizedCards] = useState([])
 
     const randomizeCards = () => {
@@ -35,7 +37,7 @@ const Practice = (props) => {
         else {
             setCardNumber(cardNumber-1)
         }
-        setShowFront(true)
+        setShowFront(showFrontFirst)
     }
 
     const nextCard = () => {
@@ -45,24 +47,26 @@ const Practice = (props) => {
         else {
             setCardNumber(cardNumber+1)
         }
-        setShowFront(true)
+        console.log(showFrontFirst)
+        setShowFront(showFrontFirst)
     }
 
     const toggleSide = () => {
         setShowFront(!showFront)
     }
 
+    const setFirstSide = () => {
+        setShowFrontFirst(!showFrontFirst)
+    }
+
     return (
         <div>
-            <h1>Practice Card!</h1>
-            {/* <h2>id: {id}</h2> */}
-            <h6>Bonus: progress bar</h6>
-            {/* <ProgressBar steps={randomizedCards.length} activeStep={cardNumber} /> */}
+            <h1>{deckName}</h1>
             <Stack className="center-items" >
                 {randomizedCards.length > 0 ? <Flashcard showFront={showFront} card={randomizedCards[cardNumber]}/> : <LoadingIcon />}
             </Stack>
             <ProgressBar steps={randomizedCards.length} activeStep={cardNumber} />
-            <PracticeNav randomizeCards={randomizeCards} toggleSide={toggleSide} previousCard={previousCard} nextCard={nextCard} />
+            <PracticeNav randomizeCards={randomizeCards} toggleSide={toggleSide} previousCard={previousCard} nextCard={nextCard} showFront={showFront} showFrontFirst={showFrontFirst} setFirstSide={setFirstSide}/>
         </div>
     )
 }
