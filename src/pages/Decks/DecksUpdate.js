@@ -2,6 +2,8 @@ import {Switch, Route} from 'react-router-dom'
 import { Button, TextField, Modal, Box, Typography, Stack } from '@mui/material';
 import {useState} from 'react'
 import CardPreview from '../../components/CardPreview'
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 
 
 const style = {
@@ -18,68 +20,59 @@ const style = {
 
 const DecksUpdate = (props) => {
 
-    // const sampleCards = props.sampleCards;
     const cards = props.cards;
     const id = props.match.params.id
     const deckName = props.decks.find(deck => deck._id === id).deckTag
     const deleteCard = props.deleteCard
     const newCard = props.newCard
-    const deck = props.decks.find(deck => deck._id === id)
-    console.log(deck)
-
-
-    // const showSampleCards = () => {
-    //     return sampleCards.map((card) => (
-    //         <div>
-    //             {card.word}
-    //         </div>
-    //     ))
-    // }
+    const myDeck = props.decks.find(deck => deck._id === id)
+    const updateDeck = props.updateDeck
 
     const filteredCards = cards.filter(card => card.deckId===id)
 
     const URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"
     const [word, setWord] = useState(null);
     const getWord = async (word) => {
-        console.log(URL + word);
         const response = await fetch(URL+word)
         const data = await response.json()
-        console.log(data)
         setWord(data);
     }
 
     const [form, setForm] = useState({deckName: "", word: ""});
+    const [deck, setDeck] = useState(myDeck)
+    const [nameForm, setNameForm] = useState({deckTag: deck.deckTag});
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [openName, setOpenName] = useState(false);
+    const handleOpenName = () => setOpenName(true);
+    const handleCloseName = () => setOpenName(false);
 
     const handleChange = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
+    }
+
+    const handleChangeNameForm = (event) => {
+        setNameForm({...nameForm, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         getWord(form.word)
         handleOpen();
-        console.log(word);
     }
 
-    // const loadingWord = () => {
-    //     return (
-    //         <div>
-    //             Loading...
-    //         </div>
-    //     )
-    // }
-
-    //CARD FUNCTIONS
-
-    
+    const handleSubmitName = (event) => {
+        event.preventDefault();
+        handleCloseName();
+        let updatedDeck = {...deck, deckTag: nameForm.deckTag}
+        updateDeck(updatedDeck, id) 
+        setDeck(updatedDeck)
+    }    
 
     const loadedCards = () => {
         return (
             <div>
-                {/* {word[0].meanings[0].definitions[0].definition} */}
                 {filteredCards.map(card => {
                     return (
                         <CardPreview cardId={card._id} word={card.word} definition={card.definition} expanded={true} edit={true} deleteCard={deleteCard} />
@@ -103,35 +96,22 @@ const DecksUpdate = (props) => {
         setForm({deckName: "", word: ""})
     }
 
-
-    // const revealCards = () => {
-    //     return (
-    //         <Stack>
-    //             {filteredCards.map(card => {
-    //                 return (
-    //                     <CardPreview word={card.word} definition={card.definition} expanded={false} edit={false}/>
-    //                 )
-    //             })}
-    //         </Stack>
-    //     )
-    // }
-
     return (
         <div>
-            <h1>Update {deck.deckTag}</h1>
-            {/* <h2>{deckName}</h2>
-            <h3>Deck Id: {id}</h3> */}
+            <div className="center-button">
+                <h1>Update {deck.deckTag}</h1>
+                <IconButton onClick={handleOpenName}>
+                    <EditIcon alt="Edit Deck Name"/>
+                </IconButton>
+            </div>
             <form className="center-items" onSubmit={handleSubmit}>
-                {/* <TextField required onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/> */}
                 <TextField onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/>
                 <Button type="submit" variant="contained">Search</Button>
             </form>
             <h4>{filteredCards.length} cards in this deck</h4>
             <Stack className="center-items" direction="column" spacing={2}>
-                {/* <CardPreview word={"dog"} definition={"Not a cat!"} expanded={true} edit={true}/> */}
                 {cards ? loadedCards() : null}
             </Stack>
-            {/* {showSampleCards()} */}
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -149,6 +129,25 @@ const DecksUpdate = (props) => {
                         <Button variant="contained" onClick={addCard} >Add to Deck</Button>
                         <Button variant="outlined" onClick={handleClose}>Cancel</Button>
                     </Stack>
+                </Box>
+            </Modal>
+            <Modal
+                open={openName}
+                onClose={handleCloseName}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Edit Deck Name
+                    </Typography>
+                    <form onSubmit={handleSubmitName}>
+                        <TextField onChange={handleChangeNameForm} name="deckTag" id="outlined-basic" label="Enter deck name..." variant="standard" value={nameForm.deckTag}  />
+                        <Stack className="flex-column-center" direction="row" spacing={4} >
+                            <Button variant="contained" type="submit">Update Name</Button>
+                            <Button variant="outlined" onClick={handleCloseName}>Cancel</Button>
+                        </Stack>
+                    </form>
                 </Box>
             </Modal>
             
