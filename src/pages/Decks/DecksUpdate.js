@@ -34,8 +34,12 @@ const DecksUpdate = (props) => {
     const [word, setWord] = useState(null);
     const getWord = async (word) => {
         const response = await fetch(URL+word)
-        const data = await response.json()
-        setWord(data);
+        console.log(response)
+        if (response.status !== 404) {
+            const data = await response.json()
+            console.log(data)
+            setWord(data);
+        }
     }
 
     const [form, setForm] = useState({deckName: "", word: ""});
@@ -70,6 +74,11 @@ const DecksUpdate = (props) => {
         setDeck(updatedDeck)
     }    
 
+    const cancelWord = () => {
+        handleClose()
+        setForm({deckName: "", word: ""})
+    }
+
     const loadedCards = () => {
         return (
             <div>
@@ -85,7 +94,16 @@ const DecksUpdate = (props) => {
     const loadedWord = () => {
         return (
             <div>
+                <b>Definition:&nbsp;</b> 
                 {word[0].meanings[0].definitions[0].definition}
+            </div>
+        )
+    }
+
+    const noWordFound = () => {
+        return (
+            <div>
+                <p>No definition found. Double check your spelling or search another word.</p>
             </div>
         )
     }
@@ -106,7 +124,10 @@ const DecksUpdate = (props) => {
             </div>
             <form className="center-items" onSubmit={handleSubmit}>
                 <TextField onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/>
+                {form.word === "" ? 
+                <Button type="submit" variant="contained" disabled>Search</Button> :
                 <Button type="submit" variant="contained">Search</Button>
+                } 
             </form>
             <h4>{filteredCards.length} cards in this deck</h4>
             <Stack className="center-items" direction="column" spacing={2}>
@@ -123,11 +144,11 @@ const DecksUpdate = (props) => {
                         Results for &#8220;{form.word}&#8221;
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <b>Definition:</b> {word ? loadedWord() : null}
+                        {word ? loadedWord() : noWordFound()}
                     </Typography>
                     <Stack className="flex-column-center" direction="row" spacing={4}>
-                        <Button variant="contained" onClick={addCard} >Add to Deck</Button>
-                        <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+                        {word ? <Button variant="contained" onClick={addCard} >Add to Deck</Button> : null}
+                        <Button variant="outlined" onClick={cancelWord}>Cancel</Button>
                     </Stack>
                 </Box>
             </Modal>
