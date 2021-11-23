@@ -174,7 +174,7 @@ const Main = () => {
     return (
         <Switch>
             <Route exact path={path}>
-                <Home newDeck={newDeck} />
+                <Home newDeck={newDeck} getDecks={getDecks} decks={decks} />
             </Route>
             <Route exact path={`${path}/decks`}>
                 <Decks decks={decks}/>
