@@ -5,7 +5,6 @@ import Main from './components/Main';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Welcome from './pages/Welcome';
-import LandingPage from './components/LandingPage'
 import ColorTheme from './components/ColorTheme';
 import { ThemeProvider } from '@mui/system';
 
@@ -15,8 +14,14 @@ function App() {
     <div className="App">
       <ThemeProvider theme={ColorTheme}>
       <Switch>
-        <Route path="/welcome">
-          <LandingPage />
+        <Route exact path="/">
+          <Welcome />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <Signup />
         </Route>
         <Route path="/my">
           <Header />
