@@ -10,7 +10,8 @@ const Signup = (props) => {
 
     return (
         <div>
-            <h1>MAKE AN ACCOUNT</h1>
+            <h1>APP'S NAME</h1>
+            <h3>Make an Account</h3>
             <form onSubmit={handleSubmit}>
                 <Stack className="flex-center" spacing={2}>
                     <TextField label="Email" variant="standard" className="fixed-width-button" name="email"/>
@@ -18,9 +19,9 @@ const Signup = (props) => {
                     <TextField label="Password" variant="standard" className="fixed-width-button" type="password" name="password"/>
                     <TextField label="Verify Password" variant="standard" className="fixed-width-button" type="password" name="verifyPassword"/>
                 </Stack>
-                <Stack className="flex-column-center" direction="row" spacing={2}>
-                    <Button type="submit" variant="contained">Create Account</Button>
-                    <Link to="/"><Button variant="outlined">Cancel</Button></Link>
+                <Stack spacing={2} className="flex-center" >
+                    <Button className="fixed-width-button" type="submit" variant="contained">Create Account</Button>
+                    <Link to="/welcome"><Button className="fixed-width-button" variant="outlined">Cancel</Button></Link>
                 </Stack>
             </form>
         </div>
