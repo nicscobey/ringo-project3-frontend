@@ -69,7 +69,7 @@ const DecksShow = (props) => {
             <h1>{deck.deckTag}</h1>
             <Stack className="center-items" direction="column" spacing={2}>
                 <Link to={`/my/decks/${id}/practice`}><Button variant="contained" className="fixed-width-button">Practice Flashcards</Button></Link>
-                <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Add or Update Cards</Button></Link>
+                <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Edit Deck</Button></Link>
                 {showCards ? revealCards() : hideCards()}
                 <Button variant="outlined" className="fixed-width-button" onClick={handleOpen}>Delete Deck</Button>
             </Stack>
