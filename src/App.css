@@ -59,6 +59,10 @@ a {
   text-decoration: none;
 }
 
+.white {
+  color: white;
+}
+
 .center-items {
   display: flex;
   justify-content: center;
@@ -135,4 +139,9 @@ Button.right-top {
 
 .MuiLinearProgress-root {
   width: 500px !important;
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
 }

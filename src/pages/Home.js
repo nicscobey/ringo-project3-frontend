@@ -1,6 +1,6 @@
 import {Switch, Route, Link} from 'react-router-dom'
 import { Button, Stack, Box, Typography, Modal, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const style = {
     position: 'absolute',
@@ -16,11 +16,16 @@ const style = {
 
 const Home = (props) => {
 
+    console.log(props)
     const newDeck = props.newDeck
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    
+    //have modal open upon page load if user is routing to create new Deck
+
+    useEffect(()=> setOpen(props.new), [])
 
     const [form, setForm] = useState({deckName: "", word: ""});
 

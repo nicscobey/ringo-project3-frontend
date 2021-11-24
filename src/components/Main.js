@@ -176,6 +176,9 @@ const Main = () => {
             <Route exact path={path}>
                 <Home newDeck={newDeck} getDecks={getDecks} decks={decks} />
             </Route>
+            <Route path={`${path}/new`}>
+                <Home newDeck={newDeck} getDecks={getDecks} decks={decks} new={true}/>
+            </Route>
             <Route exact path={`${path}/decks`}>
                 <Decks decks={decks}/>
             </Route>
