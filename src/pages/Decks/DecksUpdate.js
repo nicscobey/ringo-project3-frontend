@@ -40,6 +40,9 @@ const DecksUpdate = (props) => {
             console.log(data)
             setWord(data);
         }
+        else {
+            setWord(null)
+        }
     }
 
     const [form, setForm] = useState({deckName: "", word: ""});
@@ -96,6 +99,10 @@ const DecksUpdate = (props) => {
             <div>
                 <b>Definition:&nbsp;</b> 
                 {word[0].meanings[0].definitions[0].definition}
+                <Stack className="flex-column-center" direction="row" spacing={4}>
+                    {word ? <Button variant="contained" onClick={addCard}>Add to Deck</Button> : null}
+                    <Button variant="outlined" onClick={cancelWord}>Cancel</Button>
+                </Stack>
             </div>
         )
     }
@@ -104,6 +111,7 @@ const DecksUpdate = (props) => {
         return (
             <div>
                 <p>No definition found. Double check your spelling or search another word.</p>
+                <Button variant="outlined" onClick={cancelWord}>Cancel</Button>
             </div>
         )
     }
@@ -122,6 +130,7 @@ const DecksUpdate = (props) => {
                     <EditIcon alt="Edit Deck Name"/>
                 </IconButton>
             </div>
+            <p>To add a card to the deck, search for a word below.</p>
             <form className="center-items" onSubmit={handleSubmit}>
                 <TextField onChange={handleChange} name="word" id="outlined-basic" label="Type a word..." variant="standard" value={form.word}/>
                 {form.word === "" ? 
@@ -146,10 +155,10 @@ const DecksUpdate = (props) => {
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {word ? loadedWord() : noWordFound()}
                     </Typography>
-                    <Stack className="flex-column-center" direction="row" spacing={4}>
+                    {/* <Stack className="flex-column-center" direction="row" spacing={4}>
                         {word ? <Button variant="contained" onClick={addCard} >Add to Deck</Button> : null}
                         <Button variant="outlined" onClick={cancelWord}>Cancel</Button>
-                    </Stack>
+                    </Stack> */}
                 </Box>
             </Modal>
             <Modal
