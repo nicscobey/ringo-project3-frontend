@@ -39,7 +39,7 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>Select an option below to get started!</h1>
+            <h1>Select an option below:</h1>
             <Stack className="flex-center" spacing={4}>
                 <Link to="/my/decks"><Button className="fixed-width-button" variant="contained">View Flashcard Decks</Button></Link>
                 <Button onClick={handleOpen} className="fixed-width-button" variant="contained">Add a New Flashcard Deck</Button>
