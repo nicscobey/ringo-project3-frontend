@@ -4,14 +4,12 @@ import Decks from '../pages/Decks/Decks'
 import DecksUpdate from '../pages/Decks/DecksUpdate'
 import DecksShow from '../pages/Decks/DecksShow'
 import Home from '../pages/Home'
-import DecksNew from '../pages/Decks/DELETE-DecksNew'
 import { useState, useEffect } from 'react'
-import { TableBody } from '@mui/material'
 import Practice from '../pages/Practice'
 
 const Main = () => {
 
-    let { path, url } = useRouteMatch();
+    let { path } = useRouteMatch();
     // const URL = ""
 
     // const sampleDeckNames = ["Deck 1", "Deck 2", "Deck 3"]
@@ -83,6 +81,7 @@ const Main = () => {
         const response = await fetch(cardURL);
         const data = await response.json();
         setCards(data);
+        // setCards(sampleCards)
     }
 
 
@@ -136,6 +135,7 @@ const Main = () => {
         console.log(data);
         console.log('hello')
         setDecks(data)
+        // setDecks(sampleDecks)
     }
 
     const updateDeck = async (deck, id) => {
@@ -176,17 +176,14 @@ const Main = () => {
             <Route exact path={path}>
                 <Home newDeck={newDeck} getDecks={getDecks} decks={decks} />
             </Route>
-            <Route path={`${path}/new`}>
+            {/* <Route path={`${path}/new`}>
                 <Home newDeck={newDeck} getDecks={getDecks} decks={decks} new={true}/>
-            </Route>
-            <Route exact path={`${path}/decks`}>
-                <Decks decks={decks}/>
-            </Route>
-            {/* <Route path={`${path}/decks/new`}>
-                <DecksNew decks={decks} newDeck={newDeck} sampleDeck={sampleDeck}/>
             </Route> */}
+            <Route exact path={`${path}/decks`}>
+                <Decks decks={decks} getDecks={getDecks} getCards={getCards} />
+            </Route>
             <Route path={`${path}/decks/:id/update`} render={(rp) => (
-                    <DecksUpdate newCard={newCard} deleteCard={deleteCard} decks={decks} cards={cards} {...rp} updateDeck={updateDeck} />
+                    <DecksUpdate newCard={newCard} deleteCard={deleteCard} decks={decks} cards={cards} {...rp} updateDeck={updateDeck}  />
                 )}
             />
             <Route path={`${path}/decks/:id/practice`} render={(rp) => (

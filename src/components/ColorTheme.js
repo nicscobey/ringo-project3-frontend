@@ -4,7 +4,13 @@ import { indigo } from "@mui/material/colors"
 const ColorTheme = createTheme({
     palette: {
         primary: {
-            main: '#f44336'
+            main: '#E86653'
+        },
+        secondary: {
+            main: '#477AC2'
+        },
+        success: {
+            main: '#3E6F8E'
         }
     }
 })
