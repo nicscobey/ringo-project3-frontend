@@ -1,4 +1,4 @@
-import {Switch, Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { Button, Stack, Box, Typography, Modal, TextField } from '@mui/material';
 import { useState, useEffect } from 'react';
 
@@ -42,9 +42,9 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>You've logged in!</h1>
+            <h1>Select an option below to get started!</h1>
             <Stack className="flex-center" spacing={4}>
-                <Link to="/my/decks"><Button className="fixed-width-button" variant="contained">My Flashcards</Button></Link>
+                <Link to="/my/decks"><Button className="fixed-width-button" variant="contained">View Flashcard Decks</Button></Link>
                 <Button onClick={handleOpen} className="fixed-width-button" variant="contained">Add a New Flashcard Deck</Button>
             </Stack>
             <Modal
@@ -62,7 +62,7 @@ const Home = (props) => {
                     </Typography> */}
                     <form onSubmit={handleSubmit}>
                         <TextField onChange={handleChange} name="word" id="outlined-basic" label="Enter deck name..." variant="standard" value={form.word}  />
-                        <Stack className="flex-column-center" direction="row" spacing={4} >
+                        <Stack className="flex-column-center margin-top" direction="row" spacing={4} >
                             <Button variant="contained" type="submit">Create Deck</Button>
                             <Button variant="outlined" onClick={handleClose}>Cancel</Button>
                         </Stack>

@@ -1,22 +1,15 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button } from '@mui/material';
-import { TextField, Modal, Box, Stack } from '@mui/material';
+import { Modal, Box, Stack } from '@mui/material';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
@@ -63,9 +56,10 @@ export default function CardPreview(props) {
 
   const showEditTools = () => {
       return (
-          <>
-            <Button variant="outlined" onClick={handleDeleteOpen} >Delete</Button>
-          </>
+          <Stack className="flex-column-center" direction="row" spacing={2} >
+            <Link to={`/my/card/${id}`}><Button variant="contained" className="width-ninety">View</Button></Link>
+            <Button variant="outlined" onClick={handleDeleteOpen}  className="width-ninety">Delete</Button>
+          </Stack>
       )
   }
 
@@ -122,7 +116,7 @@ aria-describedby="modal-modal-description"
     {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         <b>Definition:</b> {word ? loadedWord() : null}
     </Typography> */}
-    <Stack className="flex-column-center" direction="row" spacing={4} >
+    <Stack className="flex-column-center margin-top" direction="row" spacing={4} >
         <Button variant="contained" type="submit" onClick={removeCard}>Delete Card</Button>
         <Button variant="outlined" onClick={handleDeleteClose}>Cancel</Button>
     </Stack>
