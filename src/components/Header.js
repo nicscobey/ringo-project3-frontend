@@ -9,8 +9,9 @@ const Header = (props) => {
         <Toolbar className="header-bar">
           <div className="flex">
             <Link to="/" className="white"><Button  color="inherit">
-              <Typography variant="h6" component="div">
-                CARDSTACK
+              <img src="https://i.imgur.com/L9Ef3sJ.png" alt="logo" width="25px"/>
+              <Typography variant="h6" component="div" className="mansalva">
+                &nbsp;CardStack
               </Typography>
             </Button>
             </Link>

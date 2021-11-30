@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { Button, Stack, Box, Typography, Modal, TextField } from '@mui/material';
 import { useState, useEffect } from 'react';
 
@@ -21,6 +21,8 @@ const Home = (props) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const history = useHistory()
     
     useEffect(()=> setOpen(props.new), [])
 
@@ -30,16 +32,17 @@ const Home = (props) => {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
         handleClose()
         newDeck({"deckTag": form.word})
         setForm({deckName: "", word: ""})
+        history.push('/my/decks')
     }
 
     return (
         <div>
-            <h1>Select an option below:</h1>
+            <h2>Select an option below:</h2>
             <Stack className="flex-center" spacing={4}>
                 <Link to="/my/decks"><Button className="fixed-width-button" variant="contained">View Flashcard Decks</Button></Link>
                 <Button onClick={handleOpen} className="fixed-width-button" variant="contained">Add a New Flashcard Deck</Button>

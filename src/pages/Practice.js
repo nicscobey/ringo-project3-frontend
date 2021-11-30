@@ -1,12 +1,13 @@
 import { Stack } from '@mui/material';
 import Flashcard from '../components/Flashcard';
 import PracticeNav from '../components/PracticeNav';
-import { useState} from 'react';
+import { useEffect, useState} from 'react';
 import LoadingIcon from '../components/LoadingIcon';
 import ProgressBar from '../components/ProgressBar';
 
 const Practice = (props) => {
 
+    console.log(props)
     const [cardNumber, setCardNumber] = useState(0)
     const [showFront, setShowFront] = useState(true)
     const [showFrontFirst, setShowFrontFirst] = useState(true)
@@ -14,6 +15,12 @@ const Practice = (props) => {
     let id = ""
     let cards = [];
     let deckName = "";
+
+    // const getDeckName = async => {
+    //     const response = await fetch()
+    // }
+
+    // useEffect(() => {getDeckName()}, [])
 
     const randomizeCards = () => {
 
@@ -37,6 +44,7 @@ const Practice = (props) => {
         id = props.match.params.id;
         cards = props.cards.filter(card => card.deckId === id)
         deckName = cards[0].deckTag
+        
 
         const previousCard = () => {
             if (cardNumber === 0) {
@@ -64,12 +72,13 @@ const Practice = (props) => {
 
         const setFirstSide = () => {
             setShowFrontFirst(!showFrontFirst)
+            toggleSide();
         }
 
         return (
             <>
                 <div>
-                    <h1>{deckName}</h1>
+                    <h1 className="mansalva blue medium">{deckName}</h1>
                     <Stack className="center-items" >
                         {
                             randomizedCards.length > 0 ? <Flashcard showFront={showFront} card={randomizedCards[cardNumber]}/> : <Flashcard showFront={showFront} card={cards[cardNumber]}/>
