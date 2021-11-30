@@ -17,27 +17,11 @@
 }
 
 .App-header {
-  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
-  /* color: white; */
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .fixed-width-button {
@@ -128,12 +112,6 @@ Button.right-top {
   border-top-right-radius: 20px !important;
 }
 
-/* MobileStepper {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-} */
-
 #practice-navbar {
   margin-right: auto !important;
   margin-left: auto !important;
@@ -154,12 +132,8 @@ Button.right-top {
 }
 
 #logo {
-  max-width: 30%;
+  max-width: 40%;
 }
-
-/* Button[variant="outlined"] {
-  background-color: white !important;
-} */
 
 .css-1ei6101-MuiButtonBase-root-MuiButton-root {
   background-color: white !important;
@@ -172,51 +146,6 @@ Button.right-top {
 .blue-text {
   color: #3e6f8e;
 }
-
-/* .css-7qz1x1-MuiLinearProgress-root-MuiMobileStepper-progress {
-  background-color: this is the light color
-}
-
-.css-7v3fqm-MuiLinearProgress-bar1 {
-  background-color: this is the dark color;
-} */
-
-/* CSS ANIMATIONS FOR CARD FLIP -- Created following W3Schools' Tutorial here: https://www.w3schools.com/howto/howto_css_flip_card.asp */
-
-/* .flip-card {
-  background-color: transparent;
-  perspective: 1000px;
-  width: 500px;
-  height: 300px;
-}
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.4s;
-  transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.activeCardSide,
-.hiddenCardSide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.activeCardSide {
-}
-
-.hiddenCardSide {
-  transform: rotateY(180deg);
-} */
 
 .width-ninety {
   width: 90px;

@@ -84,20 +84,7 @@ const Main = () => {
         // setCards(sampleCards)
     }
 
-
-    // const updateCard = async (card, id) => {
-    //     await fetch(cardURL + id, {
-    //         method: "put",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(card)
-    //     })
-    //     getCards()
-    // }
-
     const deleteCard = async (id) => {
-        console.log(id)
         await fetch(cardURL + id, {
             method: "delete"
         })
@@ -107,7 +94,6 @@ const Main = () => {
 
     const newCard = async (card, id, deckName) => {
         
-        //also need to add deckTag and deckId
         const data = {
             "word": card[0].word,
             "definition": card[0].meanings[0].definitions[0].definition,
@@ -132,8 +118,6 @@ const Main = () => {
     const getDecks = async () => {
         const response = await fetch(deckURL)
         const data = await response.json()
-        console.log(data);
-        console.log('hello')
         setDecks(data)
         // setDecks(sampleDecks)
     }
@@ -176,9 +160,6 @@ const Main = () => {
             <Route exact path={path}>
                 <Home newDeck={newDeck} getDecks={getDecks} decks={decks} />
             </Route>
-            {/* <Route path={`${path}/new`}>
-                <Home newDeck={newDeck} getDecks={getDecks} decks={decks} new={true}/>
-            </Route> */}
             <Route exact path={`${path}/decks`}>
                 <Decks decks={decks} getDecks={getDecks} getCards={getCards} />
             </Route>

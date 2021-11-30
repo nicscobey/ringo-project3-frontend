@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import {Button, Stack, Box, Typography, Modal} from '@mui/material'
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import CardPreview from '../../components/CardPreview'
 import LoadingIcon from '../../components/LoadingIcon';
 
@@ -18,27 +18,13 @@ const style = {
 
 const DecksShow = (props) => {
 
-    console.log(props)
-
     const [showCards, setShowCards] = useState(false)
     const [open, setOpen] = useState(false);
 
-
-
     const loadedData = () => {
 
-        // const {id} = useParams()
     const id = props.match.params.id;
-    console.log(id);
-    console.log(typeof(id))
-    // const sampleCards = props.sampleCards.filter(card => card.deckId === id)
-    console.log(props.cards)
     const cards = props.cards.filter(card => card.deckId === id)
-    // cards.log(typeof(cards[0].deckId))
-    console.log(typeof(id));
-    console.log(cards)
-    console.log(typeof(props.cards[0].deckId))
-    // console.log(sampleCards);
 
     //SORT CARDS ALPHABETICALLY BY WORD
     function sortCards(a,b) {
@@ -46,11 +32,8 @@ const DecksShow = (props) => {
         return -1
     }
     cards.sort(sortCards)
-    console.log(cards)
-
 
     const deck = props.decks.find(deck => deck._id === id)
-    console.log(deck)
 
     const toggleShowCards = () => {
         setShowCards(!showCards)
@@ -101,9 +84,6 @@ const DecksShow = (props) => {
                     <Typography id="modal-modal-title" variant="h6" component="h4">
                         Are you sure you wish to delete this deck? This action cannot be undone.
                     </Typography>
-                    {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <b>Definition:</b> {word ? loadedWord() : null}
-                    </Typography> */}
                     <Stack className="flex-column-center margin-top" direction="row" spacing={4} >
                         <Link to="/my/decks"><Button variant="contained" type="submit" onClick={removeDeck}>Delete Deck</Button></Link>
                         <Button variant="outlined" onClick={handleClose}>Cancel</Button>
