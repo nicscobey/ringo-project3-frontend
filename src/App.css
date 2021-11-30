@@ -151,3 +151,28 @@ Button.right-top {
 .width-ninety {
   width: 90px;
 }
+
+.mansalva {
+  font-family: "Mansalva", cursive !important;
+  text-transform: none;
+}
+
+.blue {
+  color: #3e6f8e;
+}
+
+.large {
+  font-size: 80px;
+}
+
+.medium {
+  font-size: 55px;
+}
+
+.small {
+  font-size: 30px !important;
+}
+
+.tiny {
+  font-size: 23px !important;
+}

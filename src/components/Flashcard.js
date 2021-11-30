@@ -6,7 +6,7 @@ const Flashcard = (props) => {
         return (
             <Card sx={{ width: 500, height: 300 }} className="card-front">
                 <CardContent className="center-text">
-                    <Typography variant="h5" component="div">
+                    <Typography variant="h5" component="div" className="mansalva small">
                         {props.card.word}
                     </Typography>
                 </CardContent>
@@ -18,7 +18,7 @@ const Flashcard = (props) => {
         return (
             <Card sx={{ width: 500, height: 300 }} className="card-back">
                 <CardContent className="center-text">
-                    <Typography variant="h6" component="div">
+                    <Typography variant="h6" component="div" className="mansalva tiny">
                         {props.card.definition}
                     </Typography>
                 </CardContent>

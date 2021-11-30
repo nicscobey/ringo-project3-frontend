@@ -25,7 +25,8 @@ const Decks = (props) => {
 
     return (
         <div>
-            <h1>Flashcard Decks</h1>
+            <h1 className="mansalva blue medium">Flashcard Decks</h1>
+            <h2>Select a deck:</h2>
             <Stack className="flex-center" spacing={4}>
                 {decks ? deckButtons() : <LoadingIcon />}
             </Stack>

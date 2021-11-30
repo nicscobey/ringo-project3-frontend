@@ -67,7 +67,7 @@ const DecksShow = (props) => {
 
         return (
             <div>
-            <h1>{deck.deckTag}</h1>
+            <h1  className="mansalva blue medium">{deck.deckTag}</h1>
             <Stack className="center-items" direction="column" spacing={2}>
                 <Link to={`/my/decks/${id}/practice`}><Button variant="contained" className="fixed-width-button">Practice Flashcards</Button></Link>
                 <Link to={`/my/decks/${id}/update`}><Button variant="contained" className="fixed-width-button">Edit Deck</Button></Link>
