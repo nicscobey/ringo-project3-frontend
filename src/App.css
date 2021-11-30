@@ -116,6 +116,7 @@ Button.right-top {
   margin-right: auto !important;
   margin-left: auto !important;
   margin-top: 20px;
+  padding: 0 !important;
 }
 
 .MuiLinearProgress-root {
@@ -139,9 +140,9 @@ Button.right-top {
   background-color: white !important;
 }
 
-.css-pg21s3-MuiPaper-root-MuiMobileStepper-root {
+/* .css-pg21s3-MuiPaper-root-MuiMobileStepper-root {
   padding: 0 !important;
-}
+} */
 
 .blue-text {
   color: #3e6f8e;
