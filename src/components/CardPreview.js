@@ -63,16 +63,11 @@ export default function CardPreview(props) {
       )
   }
 
-
-
-
-
-
   const removeCard = () => {
     props.deleteCard(id)
-}
+  }
 
-const [deleteOpen, setDeleteOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
     const handleDeleteOpen = () => setDeleteOpen(true);
     const handleDeleteClose = () => setDeleteOpen(false);
 
@@ -113,9 +108,6 @@ aria-describedby="modal-modal-description"
     <Typography id="modal-modal-title" variant="h6" component="h4">
         Are you sure you wish to delete this card? This action cannot be undone.
     </Typography>
-    {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        <b>Definition:</b> {word ? loadedWord() : null}
-    </Typography> */}
     <Stack className="flex-column-center margin-top" direction="row" spacing={4} >
         <Button variant="contained" type="submit" onClick={removeCard}>Delete Card</Button>
         <Button variant="outlined" onClick={handleDeleteClose}>Cancel</Button>

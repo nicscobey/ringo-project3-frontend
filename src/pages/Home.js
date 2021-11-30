@@ -16,15 +16,12 @@ const style = {
 
 const Home = (props) => {
 
-    console.log(props)
     const newDeck = props.newDeck
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
-    //have modal open upon page load if user is routing to create new Deck
-
     useEffect(()=> setOpen(props.new), [])
 
     const [form, setForm] = useState({deckName: "", word: ""});
@@ -57,9 +54,6 @@ const Home = (props) => {
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Create a New Deck
                     </Typography>
-                    {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <b>Definition:</b> {word ? loadedWord() : null}
-                    </Typography> */}
                     <form onSubmit={handleSubmit}>
                         <TextField onChange={handleChange} name="word" id="outlined-basic" label="Enter deck name..." variant="standard" value={form.word}  />
                         <Stack className="flex-column-center margin-top" direction="row" spacing={4} >
