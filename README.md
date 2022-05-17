@@ -7,7 +7,6 @@ View this project's back-end repository [here](https://github.com/nicscobey/ring
 ## Team Members
 
 - [Greg Moreta](https://github.com/Gregorio-Moreta): Back-End Developer
-- [Maximillian Rice](https://github.com/HeyItsJustMax): Front-End Developer
 - [Nic Scobey](https://github.com/nicscobey): Project Manager & Front-End Developer
 
 ## Technologies Used
